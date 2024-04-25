@@ -47,6 +47,20 @@ def geocoding (location):
     return json_status,lat,lng,new_loc
 
 while True:
+    print("\n+++++++++++++++++++++++++++++++++++++++++++++")
+    print("Vehicle profiles available on Graphhopper:")
+    print("+++++++++++++++++++++++++++++++++++++++++++++")
+    print("car, bike, foot")
+    print("+++++++++++++++++++++++++++++++++++++++++++++")
+    profile=["car", "bike", "foot"]
+    vehicle = input("Enter a vehicle profile from the list above: ")
+    if vehicle == "quit" or vehicle == "q":
+        break
+    elif vehicle in profile:
+        vehicle = vehicle
+    else:
+        vehicle = "car"
+        print("No valid vehicle profile was entered. Using the car profile.") 
     loc1 = input("Starting Location: ")
     if loc1 == "quit" or loc1 == "q":
         break
@@ -59,12 +73,12 @@ while True:
     if orig[0] == 200 and dest[0] == 200:
         op = "&point=" + str(orig[1]) + "%2C" + str(orig[2])
         dp = "&point=" + str(dest[1]) + "%2C" + str(dest[2])
-        paths_url = route_url + urllib.parse.urlencode({"key": api_key}) + op + dp
+        paths_url = route_url + urllib.parse.urlencode({"key": api_key, "vehicle": vehicle}) + op + dp
         paths_status = requests.get(paths_url).status_code
         paths_data = requests.get(paths_url).json()
         print("Routing API Status: " + str(paths_status) + "\nRouting API URL:\n" + paths_url)
         print("=================================================")
-        print("Directions from " + orig[3] + " to " + dest[3])
+        print("Directions from " + orig[3] + " to " + dest[3] + " by " + vehicle)
         print("=================================================")
         if paths_status == 200:
             miles = (paths_data["paths"][0]["distance"])/1000/1.61
@@ -80,4 +94,7 @@ while True:
                 distance = paths_data["paths"][0]["instructions"][each]["distance"]
                 print("{0} ( {1:.1f} km / {2:.1f} miles )".format(path, distance/1000,
                 distance/1000/1.61))
-                print("=============================================")
+            print("=============================================")
+        else:
+            print("Error message: " + paths_data["message"])
+            print("*************************************************") 
