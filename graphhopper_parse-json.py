@@ -1,9 +1,7 @@
 import urllib.parse
 import requests
 
-loc1 = "Wahington, D.C."
-loc2 = "Baltimore, Maryland"
-api_key="9ceabc90-953e-42e9-a7af-26b11f91c2c9"
+api_key=""
 
 def geocoding (location):
     geocode_url = "https://graphhopper.com/api/1/geocode?"
@@ -43,7 +41,13 @@ def geocoding (location):
         new_loc=location
     return json_status,lat,lng,new_loc
 
-start = geocoding("Washington D.C.")
-print(start)
-end = geocoding("Toronto")
-print(end)
+while True:
+    loc1 = input("Starting Location: ")
+    if loc1 == "quit" or loc1 == "q":
+        break
+    orig = geocoding(loc1)
+    print(orig)
+    loc2 = input("Destination: ")
+    if loc2 == "quit" or loc2 == "q":
+        break
+    dest = geocoding(loc2)
