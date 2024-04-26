@@ -1,1 +1,4 @@
 api_key
+venv
+__pycache__
+features/__pycache__
