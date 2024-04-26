@@ -28,6 +28,9 @@ def choose_vehicle():
     return vehicle
 
 while True:
+    if ask_load_favorite() == True:
+        continue
+
     vehicle = choose_vehicle()
 
     print(bold_text(colored("▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️GEOLOCATIONS START▪▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️", "white")))
@@ -37,4 +40,4 @@ while True:
 
     routing(orig, dest, vehicle)
 
-    ask_save_favorite(orig[3], dest[3], vehicle)
+    ask_save_favorite(orig, dest, vehicle)

@@ -1,3 +1,34 @@
 {
-  "favorite_trips": []
+  "favorite_trips": [
+    {
+      "orig": [
+        200,
+        38.8950368,
+        -77.0365427,
+        "Washington, District of Columbia, United States"
+      ],
+      "dest": [
+        200,
+        39.2908816,
+        -76.610759,
+        "Baltimore, Maryland, United States"
+      ],
+      "vehicle": "car"
+    },
+    {
+      "orig": [
+        200,
+        40.7127281,
+        -74.0060152,
+        "New York, New York, United States"
+      ],
+      "dest": [
+        200,
+        34.0536909,
+        -118.242766,
+        "Los Angeles, California, United States"
+      ],
+      "vehicle": "mtb"
+    }
+  ]
 }
