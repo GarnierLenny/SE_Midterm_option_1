@@ -21,6 +21,7 @@ def routing(orig, dest, vehicle):
             hr = int(paths_data["paths"][0]["time"]/1000/60/60) 
             print(bold_text("Distance Traveled: ") +  "{0:.1f} miles / {1:.1f} km".format(miles, km))
             print(bold_text("Trip Duration: ") + "{0:02d}:{1:02d}:{2:02d}".format(hr, min, sec))
+            print(bold_text("Height difference: ") + "{0:.1f} m".format(paths_data["paths"][0]["ascend"]+paths_data["paths"][0]["descend"]))
             print(colored("▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️", "green"))
             print(colored(bold_text("🔰 DIRECTIONS"), "white"), end="\n\n")
             for each in range(len(paths_data["paths"][0]["instructions"])):
