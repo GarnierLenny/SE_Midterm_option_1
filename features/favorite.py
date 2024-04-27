@@ -23,7 +23,7 @@ def ask_load_favorite():
       print(bold_text(colored("Vehicle:\t", "cyan") + trip['vehicle'].capitalize()), end="\n\n")
     trip_to_load = int(input(bold_text(colored("Enter trip number to load: ", "magenta"))))
     print()
-    routing(data[trip_to_load - 1]['orig'], data[trip_to_load - 1]['dest'], data[trip_to_load - 1]['vehicle'])
+    routing(data[trip_to_load - 1]['orig'], data[trip_to_load - 1]['dest'], data[trip_to_load - 1]['vehicle'], [])
     return True
   return False
 
