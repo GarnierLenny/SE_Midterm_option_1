@@ -48,3 +48,9 @@ while True:
     routing(orig, dest, vehicle, stops)
 
     ask_save_favorite(orig, dest, vehicle)
+
+    answer1 = input(bold_text(colored("Round trip? ", "light_yellow") + colored("(yes/no): ", "dark_grey")))
+    answer2 = input(bold_text(colored("Keep stops? ", "light_yellow") + colored("(yes/no): ", "dark_grey")))
+    if answer1 == "yes":
+        stops.reverse()
+        routing(dest, orig, vehicle, (stops if answer2 == "yes" else []))
