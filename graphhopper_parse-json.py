@@ -36,8 +36,15 @@ while True:
     print(bold_text(colored("▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️GEOLOCATIONS START▪▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️", "white")))
     orig = find_geocoding(bold_text("Starting Location: "))
     dest = find_geocoding(bold_text("Destination: "))
+    stops = []
+    while True:
+        answer = input(bold_text(colored("Add a stop? ", "light_yellow") + colored("(yes/no): ", "dark_grey")))
+        if answer == "yes":
+            stops.append(find_geocoding(bold_text("Stop to add: ")))
+        else:
+            break
     print(bold_text(colored("▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️GEOLOCATIONS END▪▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️", "white")), end="\n\n")
 
-    routing(orig, dest, vehicle)
+    routing(orig, dest, vehicle, stops)
 
     ask_save_favorite(orig, dest, vehicle)

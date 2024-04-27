@@ -4,11 +4,17 @@ from termcolor import colored
 from utils import *
 from .geocoding import *
 
-def routing(orig, dest, vehicle):
+def routing(orig, dest, vehicle, stops):
+    for stop in stops:
+        if stop[0] != 200:
+            return
     if orig[0] == 200 and dest[0] == 200:
         op = "&point=" + str(orig[1]) + "%2C" + str(orig[2])
+        sts = ""
+        for stop in stops:
+            sts += "&point=" + str(stop[1]) + "%2C" + str(stop[2])
         dp = "&point=" + str(dest[1]) + "%2C" + str(dest[2])
-        paths_url = route_url + urllib.parse.urlencode({"key": api_key, "vehicle": vehicle}) + op + dp
+        paths_url = route_url + urllib.parse.urlencode({"key": api_key, "vehicle": vehicle}) + op + sts + dp
         paths_status = requests.get(paths_url).status_code
         paths_data = requests.get(paths_url).json()
         print(bold_text("Routing API Status: " + colored(str(paths_status), status_to_color[paths_status])), end="\n\n")
