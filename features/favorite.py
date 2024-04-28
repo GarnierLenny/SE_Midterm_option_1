@@ -22,6 +22,9 @@ def ask_load_favorite():
       print(bold_text(colored("End:\t\t", "cyan") + trip['dest'][3]))
       print(bold_text(colored("Vehicle:\t", "cyan") + trip['vehicle'].capitalize()), end="\n\n")
     trip_to_load = int(input(bold_text(colored("Enter trip number to load: ", "magenta"))))
+    if trip_to_load <= 0 or trip_to_load > len(data):
+      print(bold_text(colored("Entered trip number out of range, please try again", "red")), end="\n\n")
+      return True
     print()
     routing(data[trip_to_load - 1]['orig'], data[trip_to_load - 1]['dest'], data[trip_to_load - 1]['vehicle'], [])
     return True
