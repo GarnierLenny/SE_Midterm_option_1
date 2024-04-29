@@ -6,51 +6,21 @@ from globals import *
 from features.routing import *
 from features.geocoding import *
 from features.favorite import *
+from features.help import *
 
-def choose_vehicle():
-    print(colored("\n▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️", "white"))
-    print(bold_text("Vehicle profiles available on Graphhopper:"))
-    print(colored("▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️", "white"))
-    print(bold_text("Available vehicles: "), end="")
-    for index, vehicle in enumerate(available_vehicles):
-        print(colored(vehicle, "green"), end=(", " if index != len(available_vehicles) - 1 else "\n"))
-    print(colored("▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️", "white"))
-    vehicle = input(bold_text("Enter a vehicle profile from the list above: "))
-    if vehicle == "quit" or vehicle == "q":
-        exit()
-    elif vehicle.lower() in available_vehicles:
-        vehicle = vehicle
-    else:
-        vehicle = "car"
-        print("No valid vehicle profile was entered. Using the car profile.", end="\n\n")
-    print(bold_text("Selected vehicle: "), end="")
-    print(colored(vehicle.capitalize(), "green"), end="\n\n")
-    return vehicle
+commands = {
+    "help": help,
+    "trip": trip,
+    "favorite": favorite,
+    "exit": exit,
+}
+
+print(bold_text(colored("\nWelcome to Graphhopper! type 'help' to see the command list", "light_cyan")), end="\n\n")
 
 while True:
-    if ask_load_favorite() == True:
-        continue
+    text = input(bold_text(colored("Graphhoper $> ", "light_magenta"))).strip().split(" ")
 
-    vehicle = choose_vehicle()
-
-    print(bold_text(colored("▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️GEOLOCATIONS START▪▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️", "white")))
-    orig = find_geocoding(bold_text("Starting Location: "))
-    dest = find_geocoding(bold_text("Destination: "))
-    stops = []
-    while True:
-        answer = input(bold_text(colored("Add a stop? ", "light_yellow") + colored("(yes/no): ", "dark_grey")))
-        if answer == "yes":
-            stops.append(find_geocoding(bold_text("Stop to add: ")))
-        else:
-            break
-    print(bold_text(colored("▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️GEOLOCATIONS END▪▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️▪️", "white")), end="\n\n")
-
-    routing(orig, dest, vehicle, stops)
-
-    ask_save_favorite(orig, dest, vehicle)
-
-    answer1 = input(bold_text(colored("Round trip? ", "light_yellow") + colored("(yes/no): ", "dark_grey")))
-    answer2 = input(bold_text(colored("Keep stops? ", "light_yellow") + colored("(yes/no): ", "dark_grey")))
-    if answer1 == "yes":
-        stops.reverse()
-        routing(dest, orig, vehicle, (stops if answer2 == "yes" else []))
+    if text[0] in commands:
+        commands[text[0]](text)
+    else:
+        print(colored("Unknown command '" + text[0] + "'", "grey"), end="\n\n")
