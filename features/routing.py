@@ -6,17 +6,20 @@ from .geocoding import *
 from .favorite import *
 
 def favorite(args):
-  if args[1] == "-l":
-    show_favorite_list()
-  elif int(args[1]) != 0:
-    load_trip(int(args[1]))
-  else:
-    print(bold_text(colored("Invalid or missing option", "grey")))
+    try:
+        if args[1] == "-l":
+            show_favorite_list()
+        elif int(args[1]) != 0:
+            load_trip(int(args[1]))
+    except:
+        print(colored("Invalid or missing option", "grey"))
+        print(colored("Enter 'favorite -l' to show favorite trip list or 'favorite {trip_number} to load trip'", "grey"), end="\n\n")
 
 def load_trip(trip_to_load):
   data = load_json()
   if trip_to_load <= 0 or trip_to_load > len(data):
-    print(bold_text(colored("Trip number out of range, please try again", "red")), end="\n\n")
+    print(bold_text(colored("Trip number out of range, please try again, here's the favorite list:", "red")), end="\n\n")
+    show_favorite_list()
     return
   print()
   route(data[trip_to_load - 1]['orig'], data[trip_to_load - 1]['dest'], data[trip_to_load - 1]['vehicle'], [], False)

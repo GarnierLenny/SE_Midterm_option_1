@@ -29,6 +29,21 @@
         "Los Angeles, California, United States"
       ],
       "vehicle": "mtb"
+    },
+    {
+      "orig": [
+        200,
+        43.9492493,
+        4.8059012,
+        "Avignon, Provence-Alpes-C\u00f4te d'Azur, France"
+      ],
+      "dest": [
+        200,
+        43.2961743,
+        5.3699525,
+        "Marseille, Provence-Alpes-C\u00f4te d'Azur, France"
+      ],
+      "vehicle": "car"
     }
   ]
 }

@@ -21,6 +21,7 @@ def show_favorite_list():
     print(bold_text(colored("Start:\t\t", "cyan") + trip['orig'][3]))
     print(bold_text(colored("End:\t\t", "cyan") + trip['dest'][3]))
     print(bold_text(colored("Vehicle:\t", "cyan") + trip['vehicle'].capitalize()), end="\n\n")
+  print(colored("Enter 'favorite {trip_number}' to load trip", "grey"), end="\n\n")
 
 def ask_load_favorite():
   answer = input(bold_text(colored("⭐ Load favorite trip? ", "light_yellow") + colored("(yes/no): ", "dark_grey")))
