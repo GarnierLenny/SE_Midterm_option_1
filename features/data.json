@@ -44,6 +44,21 @@
         "Marseille, Provence-Alpes-C\u00f4te d'Azur, France"
       ],
       "vehicle": "car"
+    },
+    {
+      "orig": [
+        200,
+        48.8588897,
+        2.3200410217200766,
+        "Paris, \u00cele-de-France, France"
+      ],
+      "dest": [
+        200,
+        43.7009358,
+        7.2683912,
+        "Nice, Provence-Alpes-C\u00f4te d'Azur, France"
+      ],
+      "vehicle": "car"
     }
   ]
 }

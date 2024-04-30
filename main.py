@@ -11,6 +11,7 @@ from features.help import *
 commands = {
     "help": help,
     "trip": trip,
+    "locate": locate,
     "favorite": favorite,
     "exit": exit,
 }

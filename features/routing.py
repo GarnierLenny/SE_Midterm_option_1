@@ -4,6 +4,7 @@ from termcolor import colored
 from utils import *
 from .geocoding import *
 from .favorite import *
+from .location import *
 
 def favorite(args):
     try:
@@ -93,3 +94,14 @@ def trip(args):
     else:
         dest = find_geocoding(bold_text("Destination: "))
         route(orig, dest, vehicle, stops, True)
+
+def locate(args):
+    try:
+        if args[1] == "location":
+            find_coords()
+        elif args[1] == "treasure":
+            find_treasure()
+        else:
+            raise ValueError("")
+    except:
+        print(colored("Invalid or missing option please check the help command", "grey"))
