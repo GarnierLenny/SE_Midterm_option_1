@@ -19,7 +19,7 @@ commands = {
 print(bold_text(colored("\nWelcome to Graphhopper! type 'help' to see the command list", "light_cyan")), end="\n\n")
 
 while True:
-    text = input(bold_text(colored("Graphhoper $> ", "light_magenta"))).strip().split(" ")
+    text = input(bold_text(colored("Graphhoper $> ", "light_magenta"))).strip().lower().split(" ")
 
     if text[0] in commands:
         commands[text[0]](text)

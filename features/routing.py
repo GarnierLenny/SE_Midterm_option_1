@@ -17,13 +17,17 @@ def favorite(args):
         print(colored("Enter 'favorite -l' to show favorite trip list or 'favorite {trip_number} to load trip'", "grey"), end="\n\n")
 
 def load_trip(trip_to_load):
-  data = load_json()
-  if trip_to_load <= 0 or trip_to_load > len(data):
-    print(bold_text(colored("Trip number out of range, please try again, here's the favorite list:", "red")), end="\n\n")
-    show_favorite_list()
-    return
-  print()
-  route(data[trip_to_load - 1]['orig'], data[trip_to_load - 1]['dest'], data[trip_to_load - 1]['vehicle'], [], False)
+    data = load_json()
+    if trip_to_load <= 0 or trip_to_load > len(data):
+        print(bold_text(colored("Trip number out of range, please try again, here's the favorite list:", "red")), end="\n\n")
+        show_favorite_list()
+        return
+    print(bold_text("Loading trip number " + colored(str(trip_to_load), "light_magenta")), end="\n\n")
+    print(bold_text("Starting location:\t" + colored(data[trip_to_load - 1]['orig'][3], "green")))
+    print(bold_text("Destination:\t\t" + colored(data[trip_to_load - 1]['dest'][3], "green")))
+    print(bold_text("Vehicle:\t\t" + colored(data[trip_to_load - 1]['vehicle'].capitalize(), "green")))
+    print()
+    route(data[trip_to_load - 1]['orig'], data[trip_to_load - 1]['dest'], data[trip_to_load - 1]['vehicle'], [], False)
 
 def choose_vehicle():
     print(bold_text("\nAvailable vehicles: "), end="")
